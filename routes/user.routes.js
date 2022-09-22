@@ -32,7 +32,14 @@ router.get('/users/:user', (req, res, next) => {
         .lean()
         .then(user => {
             //console.log(user);
-            const sameUser = (user.username === userInSession.username)
+            let sameUser = false;
+
+            try {
+                sameUser = (user.username === userInSession.username)
+            }
+            catch {
+            }
+
             res.render('aUser', {layout: 'forumOverview.layout.hbs', category: `user/${user.username}`, userInSession: userInSession, user: user, sameUser: sameUser})
         })
         .catch(err => {
