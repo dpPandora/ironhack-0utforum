@@ -1,0 +1,93 @@
+<style>
+    #mainCont {
+        width: 100%;
+        display: grid;
+        grid-template-rows: 32px 1fr;
+        grid-template-areas: 
+            "createBttn"
+            "Posts";
+    }
+    #create {
+        grid-area: createBttn;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    #posts {
+        grid-area: Posts;
+        background-color: peachpuff;
+        border: 2px solid darkred;
+        border-bottom: 0;
+    }
+    .entry {
+        width: 100%;
+        height: 64px;
+        border-bottom: 2px solid darkred;
+        box-sizing: border-box;
+
+        display: grid;
+        grid-template-columns: 1fr 85px 85px 85px;
+        grid-template-areas: 
+            "postSnap replies users dated";
+    }
+    .inside {
+        padding: 5px;
+        box
+    }
+    .title {
+        border-right: 1px solid darkred;
+    }
+    .reps {
+        border-right: 1px solid darkred;
+    }
+    .users {
+        border-right: 1px solid darkred;
+    }
+    .date {
+
+    }
+</style>
+<section id="mainCont">
+    <section id="create">
+        {{#if userInSession}}
+            <a href="/topic/{{category}}/post">Create Post!</a>
+        {{else}}
+           <a href="/login">sign in</a>   
+        {{/if}}
+    </section>
+    <section id="posts">
+        <div class="entry">
+            <div class="inside title" style="grid-area: postSnap;">
+                <h3>Post</h3>
+            </div>
+            <div class="inside reps" style="grid-area: replies;">
+                <h3>Replies</h3>
+            </div>
+            <div class="inside users" style="grid-area: users;">
+                <h3>Users</h3>
+            </div>
+            <div class="inside date" style="grid-area: dated;">
+                <h3>Date</h3>
+            </div>
+        </div>
+
+        {{#each posts}}
+        <div class="entry">
+            <div class="inside title" style="grid-area: postSnap;">
+                <h3><a href="/topic/{{category}}/postid/?post={{this._id}}">{{this.title}}</a></h3>
+                <p>{{this.username}}</p>
+            </div>
+            <div class="inside reps" style="grid-area: replies;">
+                <p>{{this.replies.length}}</p>
+            </div>
+            <div class="inside users" style="grid-area: users;">
+                <p>Users</p>
+            </div>
+            <div class="inside date" style="grid-area: dated;">
+                <p>{{this.creationDate}}</p>
+            </div><!--TODO WHY didnt I think of this before!?!? Remake this but using a table, idiot-->
+        </div>
+        {{/each}}
+
+    </section>
+</section>

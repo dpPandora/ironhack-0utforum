@@ -1,0 +1,30 @@
+<style>
+    #userList {
+        width: 100%;
+        background-color: peachpuff;
+        border: 1px solid darkred;
+    }
+    .entry {
+        width: 100%;
+        border: 1px solid darkred;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        line-height: 1.2rem;
+    }
+</style>
+<section id="userList">
+    <!--
+    <div class="entry">
+        <p><br><i></i></p>
+        <h6></h6>
+    </div>
+    -->
+    {{#each users}}
+        <div class="entry">
+            <p><a href="/users/{{this.username}}"><b>{{this.username}}</b></a><br><i>{{this.tagline}}</i></p>
+            <h5>{{this.creationDate}}</h5>
+        </div>
+    {{/each}}
+</section>

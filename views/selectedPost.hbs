@@ -1,0 +1,51 @@
+<style>
+    #postRead {
+        width: 100%;
+        background-color: peachpuff;
+        border: 1px solid darkred;
+    }
+    .entry {
+        width: 100%;
+        border: 1px solid darkred;
+
+        display: grid;
+        grid-template-columns: 256px 1fr;
+        grid-template-areas: 
+            "user content";
+    }   
+    #postTitleBar {
+        grid-area: user content;
+    }
+    .inside {
+        padding: 5px;
+    }
+    .user {
+        border-right: 2px solid darkred;
+    }
+</style>
+<section id="postRead">
+    <div class="entry">
+        <h3 id="postTitleBar">{{post.title}}</h3>
+    </div>
+
+    <div class="entry">
+        <div class="inside user">
+            <p>user: {{post.username}}</p>
+        </div>
+        <div class="inside content">
+            <p>{{post.content}}</p>
+            <h6>{{post.creationDate}}</h6>
+        </div>
+    </div>
+
+    {{#each replies}}
+        <div class="entry">
+            <div class="user">
+
+            </div>
+            <div class="content">
+
+            </div>
+        </div>
+    {{/each}}
+</section>

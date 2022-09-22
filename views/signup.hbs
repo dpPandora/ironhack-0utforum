@@ -1,0 +1,73 @@
+<style>
+    .block {
+        display: block;
+    }
+    .signupBlock {
+        width: 50%;
+        border: 2px solid darkred;
+
+        display: grid;
+        grid-template-rows: max-content max-content 1fr;
+        grid-template-areas: 
+            "title"
+            "errors"
+            "form";
+    }
+    .blockTit {
+        grid-area: title;
+        background-color: peachpuff;
+        border-bottom: 2px solid darkred;
+        padding: 5px;
+    }
+    .errorDiv {
+        justify-self: center;
+        grid-area: errors;
+    }
+    .errorPop {
+        margin: 5px;
+        width: 90%;
+        background-color: white;
+        border: 1px solid red;
+    }
+    form {
+        grid-area: form;
+        padding: 5px;
+        width: 90%;
+        justify-self: center;
+        display: flex;
+        flex-direction: column;
+    }
+    input {
+        margin: 5px;
+        padding: 5px;
+    }
+    .inlines {
+    
+    }
+    button {
+        margin: 5px;
+        padding: 5px;
+    }
+</style>
+<section class="signupBlock">
+    <div class="blockTit">
+        <h2>Signup!</h2>
+    </div>
+    {{#if errors}}
+        <div class="errorDiv">
+            {{#each errors}}
+                <div class="errorPop">
+                    <p>{{this}}</p>
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+    <form action="/signup" method="post">
+        <input type="text" class="block" name="username" id="username" placeholder="Username (only letters and numbers, no spaces or special characters)" pattern="[a-zA-Z0-9]{3,}" required>
+        <input type="email" class="block" name="email" id="email" placeholder="Email">
+        <input type="password" class="inlines" name="password" id="password" placeholder="Password (only letters and numbers, no spaces or special characters)" pattern="[a-zA-Z0-9]{3,}" required>
+        <input type="password" class="inlines" name="passwordVerify" id="passwordVerify" placeholder="Verify Password" pattern="[a-zA-Z0-9]{3,}" required>
+
+        <button type="submit" class="block">Signup!</button>
+    </form>
+</section>

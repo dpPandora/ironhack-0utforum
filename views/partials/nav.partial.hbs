@@ -1,0 +1,21 @@
+<style>
+    #topNav {
+        background-color: peachpuff;
+        width: 100%;/*<!--TODO decorate nav bar-->*/
+        align-items: flex-end;
+        border: 2px solid darkred;
+        padding: 5px;
+    }
+</style>
+<nav id="topNav">
+    <span><a href="/">| home |</a></span>
+    <span><a href="/users">| users |</a></span>
+    {{#if userInSession}}
+        <span><a href="/users/{{userInSession.username}}">| profile |</a></span>
+        <span>Hello, {{userInSession.username}}! (<a href="/signout">signout?</a>)</span>
+    {{else}}
+        <span><a href="/signup">| signup |</a></span>
+        <span><a href="/login">| login |</a></span>
+    {{/if}}
+    
+</nav>

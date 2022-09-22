@@ -1,0 +1,25 @@
+<style>
+    #editor {
+        width: 100%;
+        padding: 5px;
+        background-color: peachpuff;
+        border: 2px solid darkred;
+    }
+    input, textarea {
+        padding: 5px;
+        margin-top: 10px;
+    }
+    textarea {
+        width: 100%;
+        height: 256px;
+    }
+</style>
+<section id="editor">
+    <h2>Posting to /{{category}}</h2>
+    <form action="/topic/{{category}}/post" method="post">
+        <input type="text" name="title" id="title" placeholder="Title" required>
+        <textarea name="content" id="content" required></textarea>
+
+        <button type="submit" id="bttn">Post</button>
+    </form>
+</section>

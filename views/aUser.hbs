@@ -1,0 +1,60 @@
+<style>
+    #userProfile {
+        background-color: peachpuff;
+        width: 100%;
+        border: 2px solid darkred;
+        padding: 5px;
+
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: 
+            "userinfo else";
+        column-gap: 10px;
+    }
+
+    #userinfo {
+        grid-area: userinfo;
+        border: 1px solid darkred;
+        height: fit-content;
+
+    }
+    .toptext {
+        border: 1px solid darkred;
+        padding: 5px;
+    }
+    #userdata {
+        border: 1px solid darkred;
+        padding: 5px;
+    }
+
+    #bio {
+        grid-area: else;
+        border: 1px solid darkred;
+        height: fit-content;
+    }
+    #userbio {
+        border: 1px solid darkred;
+        padding: 5px;
+    }
+</style>
+<section id="userProfile">
+    <!--<img src="https://avatars.dicebear.com/api/identicon/.svg" alt="">-->
+    <div id="userinfo">
+        <div class="toptext">
+            <p>userinfo</p>
+        </div>
+        <div id="userdata">
+            <h3>{{user.username}}</h3>
+            <h4><i>{{user.tagline}}</i></h4>
+            <p>{{user.creationDate}}</p>
+        </div>
+    </div>
+    <div id="bio">
+        <div class="toptext">
+            <p>bio</p>
+        </div>
+        <div id="userbio">
+            <p>{{user.bio}}</p>
+        </div>
+    </div>
+</section>

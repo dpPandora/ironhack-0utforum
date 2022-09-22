@@ -1,0 +1,67 @@
+<style>
+    #homePageEnti {
+        width: 100%;
+        border: 2px solid darkred;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: max-content 1fr;
+
+        grid-template-areas: 
+            "title title"
+            "colL colR";
+    }
+    #topicTit {
+        grid-area: title;
+        background-color: peachpuff;
+        border-bottom: 2px solid darkred;
+        padding: 5px;
+    }
+    #catL {
+        grid-area: colL;
+        border-right: 2px solid darkred;
+    }
+    #catR {
+        grid-area: colR;
+    }
+    .categories {
+        padding: 5px;
+    }
+</style>
+<section id="homePageEnti">
+    <div class="title" id="topicTit">
+        <h2>Topics</h2>
+    </div>
+    <div class="categories" id="catL">
+        <h3>Technology!</h3>
+        <li><a href="/topic/programming">Programming</a></li>
+        <li><a href="/topic/technews">Tech News</a></li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <h3>topic placeholder</h3>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+    </div>
+    <div class="categories" id="catR">
+        <h3>topic placeholder</h3>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <h3>topic placeholder</h3>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+        <li>placeholder</li>
+    </div>
+</section>
