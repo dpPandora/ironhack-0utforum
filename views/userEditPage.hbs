@@ -1,0 +1,26 @@
+<style>
+    #editor {
+        width: 100%;
+        padding: 5px;
+        background-color: peachpuff;
+        border: 2px solid darkred;
+    }
+    input, textarea {
+        padding: 5px;
+        margin-top: 10px;display: block;
+    }
+    textarea {
+        width: 100%;
+        height: 256px;
+    }
+</style>
+<section id="editor">
+    <h2>Editing user/{{user.username}}</h2>
+    <form action="/users/{{userInSession.username}}/edit" method="post">
+        <input type="email" name="email" id="email" placeholder="Email" value="{{user.email}}">
+        <input type="text" name="tagline" id="tagline" placeholder="Tagline" value="{{user.tagline}}">
+        <textarea name="bio" id="bio" placeholder="Bio" value="{{user.bio}}"></textarea>
+
+        <button type="submit" id="bttn">submit</button>
+    </form>
+</section>

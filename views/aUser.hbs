@@ -37,6 +37,9 @@
         padding: 5px;
     }
 </style>
+{{#if sameUser}}
+   <p>this is your page (<a href="/users/{{userInSession.username}}/edit">edit?</a>)</p>
+{{/if}}
 <section id="userProfile">
     <!--<img src="https://avatars.dicebear.com/api/identicon/.svg" alt="">-->
     <div id="userinfo">

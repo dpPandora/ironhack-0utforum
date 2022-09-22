@@ -12,7 +12,15 @@ const notloggedin = (req, res, next) => {
     next();
 }
 
+const usersPage = (req, res, next) => {
+    if(req.session.currentUser.username != req.params.user) {
+        return res.redirect('/');
+    }
+    next();
+}
+
 module.exports = {
     loggedin,
-    notloggedin
+    notloggedin,
+    usersPage
 }
