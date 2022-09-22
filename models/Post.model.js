@@ -8,7 +8,7 @@ const postSchema = new Schema({
     title: String,
     creationDate: {
         type: String,
-        default: moment().format("MM-DD-YY")
+        default: moment().format("MM-DD-YY, kk:mm:ss")
     },
     content: String,
     replies: [{type: Schema.Types.ObjectId, ref:'ReplyM'}]
