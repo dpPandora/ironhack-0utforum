@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Posts = require('../models/Post.model');
+const Reply = require('../models/Reply.model');
+
 const {loggedin, notloggedin} = require('../middleware/auth.middleware');
 const {allowedCat} = require('../middleware/listedcat.middleware');
 
@@ -49,14 +51,45 @@ router.get('/topic/:category/postid/', (req, res, next) => {
 
     Posts
         .findById(postID)
+        .populate('replies')
         .lean()
         .then(doc => {
             //res.send(doc);
+            //console.log(doc.replies);
             res.render('selectedPost', {layout: 'forumOverview.layout.hbs', category: category, userInSession: req.session.currentUser, post: doc})
         })
         .catch(err => {
             console.log(err);
             res.redirect(`/topic/${category}`);
         })
+})
+
+router.post('/topic/:category/postid/reply/', loggedin, (req, res, next) => {
+    const category = req.params.category;
+    const postID = req.query.post;
+    const replyContent = req.body.content;
+
+    //console.log(category, postID, recReply.content);
+
+    Posts
+        .findById(postID)
+        .then(doc => {
+            Reply
+                .create({postID, username: req.session.currentUser.username, content: replyContent})
+                .then(createdReply => {
+                    doc.replies.push(createdReply._id);
+                    doc.save()
+                    //res.redirect(`/topic/${category}/postid/?post=${postID}`);
+                    res.redirect('back');
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.redirect(`/topic/${category}/postid/?post=${postID}`);
+                });
+        })
+        .catch(err => {
+            console.log(err);
+            res.redirect(`/topic/${category}/postid/?post=${postID}`);        
+        });
 })
 module.exports = router;

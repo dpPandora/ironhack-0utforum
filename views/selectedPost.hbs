@@ -15,12 +15,28 @@
     }   
     #postTitleBar {
         grid-area: user content;
+        padding: 5px;
     }
     .inside {
         padding: 5px;
     }
     .user {
         border-right: 2px solid darkred;
+    }
+    form {
+        width: 100%;
+        background-color: peachpuff;
+        border: 2px solid darkred;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    textarea {
+        padding: 5px;
+        width: 100%;
+        height: 128px;
+    }
+    button {
+        padding: 5px;
     }
 </style>
 <section id="postRead">
@@ -38,14 +54,24 @@
         </div>
     </div>
 
-    {{#each replies}}
+    {{#each post.replies}}
         <div class="entry">
-            <div class="user">
-
+            <div class="inside user">
+                <p>user: {{this.username}}</p>
             </div>
-            <div class="content">
-
+            <div class="inside content">
+                <p>{{this.content}}</p>
+                <h6>{{this.creationDate}}</h6>
             </div>
         </div>
     {{/each}}
 </section>
+{{#if userInSession}}
+    <form action="/topic/{{category}}/postid/reply/?post={{post._id}}" method="post">
+        <textarea name="content" id="content" required></textarea>
+
+        <button type="submit">Reply</button>
+    </form>
+{{else}}
+    <p>you must be logged in in order to reply (<a href="/login">login?</a>)</p>
+{{/if}}
